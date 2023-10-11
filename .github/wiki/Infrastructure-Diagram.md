@@ -2,4 +2,4 @@
 
 The infrastructure is illustrated by the diagram below
 
-![infrastructure-diagram](assets/infrastructure-diagram.svg)
+![infrastructure-diagram](assets/infrastructure-diagram.png)
