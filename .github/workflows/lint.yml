@@ -1,0 +1,41 @@
+name: Lint
+
+on:
+  push:
+
+env:
+  TERRAFORM_VERSION: "1.6.1"
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linting:
+    name: Linter
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Install Terraform
+        uses: hashicorp/setup-terraform@v2.0.3
+        with:
+          terraform_version: ${{ env.TERRAFORM_VERSION }}
+
+      - name: Run Terraform format
+        run: terraform fmt -recursive -check
+
+      - name: Run trivy linter
+        uses: aquasecurity/trivy-action@0.12.0
+        with:
+          image-ref: '.'
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          severity: 'CRITICAL'
