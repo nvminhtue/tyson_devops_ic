@@ -1,3 +1,7 @@
-resource "aws_vpc" "devops-vpc" {
-  cidr_block = var.cidr
+module "vpc" {
+  source  = "terraform-aws-modules/vpc/aws"
+  version = "5.1.2"
+
+  name = local.vpc_name
+  cidr = var.cidr
 }

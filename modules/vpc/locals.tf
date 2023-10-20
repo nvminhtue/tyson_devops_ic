@@ -1,3 +1,3 @@
 locals {
-  vpc_name = "devops-vpc"
+  vpc_name = "${var.namespace}-vpc"
 }
