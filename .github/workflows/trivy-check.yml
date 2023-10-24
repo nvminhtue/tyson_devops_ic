@@ -1,4 +1,4 @@
-name: Lint
+name: Trivy check
 
 on:
   pull_request:
