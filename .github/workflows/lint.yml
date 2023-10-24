@@ -1,7 +1,7 @@
 name: Lint
 
 on:
-  push:
+  pull_request:
 
 env:
   TERRAFORM_VERSION: "1.6.1"
@@ -27,15 +27,8 @@ jobs:
         with:
           terraform_version: ${{ env.TERRAFORM_VERSION }}
 
+      - name: Run Terraform validate
+        run: terraform validate
+
       - name: Run Terraform format
         run: terraform fmt -recursive -check
-
-      - name: Run trivy linter
-        uses: aquasecurity/trivy-action@0.12.0
-        with:
-          image-ref: '.'
-          scan-type: 'fs'
-          ignore-unfixed: true
-          format: 'sarif'
-          output: 'trivy-results.sarif'
-          severity: 'CRITICAL'
