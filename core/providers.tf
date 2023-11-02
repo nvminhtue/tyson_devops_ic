@@ -1,4 +1,11 @@
 terraform {
+  cloud {
+    organization = "nvminhtue"
+
+    workspaces {
+      name = "devops-ic"
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
