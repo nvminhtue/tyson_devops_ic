@@ -3,7 +3,7 @@ terraform {
     organization = "nvminhtue"
 
     workspaces {
-      name = "devops-ic"
+      tags = ["aws-infrastructure"]
     }
   }
   required_providers {
