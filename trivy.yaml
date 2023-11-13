@@ -1,0 +1,29 @@
+timeout: 10m
+format: json
+dependency-tree: true
+list-all-pkgs: true
+exit-code: 1
+output: result.json
+# All severity levels
+severity:
+  - UNKNOWN
+  - LOW
+  - MEDIUM
+  - HIGH
+  - CRITICAL
+scan:
+  skip-dirs:
+    - .github/
+    - assets/
+    - core/.terraform/
+    - shared/.terraform/
+
+  scanners:
+    - vuln
+    - secret
+
+vulnerability:
+  type:
+    - os
+    - library
+  ignore-unfixed: true
