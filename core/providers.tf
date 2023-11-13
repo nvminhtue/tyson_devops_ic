@@ -1,10 +1,19 @@
 terraform {
+  cloud {
+    organization = "nvminhtue"
+
+    workspaces {
+      tags = ["aws-infrastructure"]
+    }
+  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
   }
+
+  required_version = "1.6.1"
 }
 
 provider "aws" {
