@@ -4,14 +4,17 @@ locals {
 
   all_prefixes = concat(local.primary_prefixes, local.secondary_prefixes)
 
+  //Sets max amount of the latest develop images to be kept
+  image_limit = 5
+
   primary_image_rules = [
     for branch_prefix in local.primary_prefixes :
     {
       rulePriority = index(local.all_prefixes, branch_prefix) + 1
-      description  = "Keep only ${var.image_limit} latest ${branch_prefix} images"
+      description  = "Keep only ${local.image_limit} latest ${branch_prefix} images"
       selection = {
         countType     = "imageCountMoreThan"
-        countNumber   = var.image_limit
+        countNumber   = local.image_limit
         tagStatus     = "tagged"
         tagPrefixList = ["${branch_prefix}-"]
       }
