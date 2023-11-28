@@ -12,12 +12,12 @@ resource "aws_iam_group" "developer" {
 }
 
 // Define policies
-data "aws_iam_group_policy" "developer_allow_manage_own_credentials" {
+resource "aws_iam_group_policy" "developer_allow_manage_own_credentials" {
   group  = aws_iam_group.developer.name
   policy = local.allow_manage_own_credentials
 }
 
-data "aws_iam_group_policy" "bot_full_iam_access" {
+resource "aws_iam_group_policy" "bot_full_iam_access" {
   group  = aws_iam_group.bot.name
   policy = local.full_iam_access_policy
 }
