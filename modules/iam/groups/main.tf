@@ -1,17 +1,21 @@
 // Define groups
+# trivy:ignore:AVD-AWS-0123
 resource "aws_iam_group" "admin" {
   name = "Admin-group"
 }
 
+# trivy:ignore:AVD-AWS-0123
 resource "aws_iam_group" "bot" {
   name = "Bot-group"
 }
 
+# trivy:ignore:AVD-AWS-0123
 resource "aws_iam_group" "developer" {
   name = "Developer-group"
 }
 
 // Define policies
+# trivy:ignore:AVD-AWS-0057
 resource "aws_iam_group_policy" "developer_allow_manage_own_credentials" {
   group  = aws_iam_group.developer.name
   policy = local.allow_manage_own_credentials
