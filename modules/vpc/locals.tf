@@ -20,14 +20,14 @@ locals {
   # The NAT gateway will be placed in the first public subnet in the public_subnets block.
 
   # provision NAT Gateways for each of private networks
-  enable_nat_gateway     = true
+  enable_nat_gateway = true
 
   # provision a single shared NAT Gateway across all of private networks
-  single_nat_gateway     = true
+  single_nat_gateway = true
 
   # Do NOT allow only one NAT Gateway per availability zone
   one_nat_gateway_per_az = false
 
   # enable DNS hostnames in the VPC
-  enable_dns_hostnames   = true
+  enable_dns_hostnames = true
 }
