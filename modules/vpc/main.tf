@@ -1,4 +1,3 @@
-# trivy:ignore:AVD-AWS-0017 trivy:ignore:AVD-AWS-0102 trivy:ignore:AVD-AWS-0105 trivy:ignore:AVD-AWS-0178 trivy:ignore:AVD-AWS-0101 trivy:ignore:AVD-AWS-0105
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.1.2"
