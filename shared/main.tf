@@ -29,7 +29,7 @@ module "iam_bot_users" {
 module "iam_admin_group_membership" {
   source = "../modules/iam/group_membership"
 
-  name  = "admin_group_membership"
+  name  = "admin-group-membership"
   group = module.iam_groups.admin_group
   users = local.iam_admin_emails
 }
@@ -37,7 +37,7 @@ module "iam_admin_group_membership" {
 module "iam_developer_group_membership" {
   source = "../modules/iam/group_membership"
 
-  name  = "developer_group_membership"
+  name  = "developer-group-membership"
   group = module.iam_groups.developer_group
   users = local.iam_developer_emails
 }
@@ -45,7 +45,7 @@ module "iam_developer_group_membership" {
 module "iam_bot_group_membership" {
   source = "../modules/iam/group_membership"
 
-  name  = "bot_group_membership"
+  name  = "bot-group-membership"
   group = module.iam_groups.bot_group
   users = local.iam_bot_emails
 }
