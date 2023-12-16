@@ -1,6 +1,6 @@
 locals {
   # Create a list of secret ARNs for ECS task execution role granting access
-  secret_arns = [for secret in aws_ssm_parameter.secrets_manager : secret.arn]
+  secret_arns = [for secret in aws_ssm_parameter.secret_parameters : secret.arn]
 
   # Create a secret names list
   secret_names = keys(var.secrets)

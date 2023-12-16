@@ -1,4 +1,4 @@
-resource "aws_ssm_parameter" "secrets_manager" {
+resource "aws_ssm_parameter" "secret_parameters" {
   for_each = var.secrets
 
   name  = "/${var.env_namespace}/${each.key}"
