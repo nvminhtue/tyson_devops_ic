@@ -12,3 +12,9 @@ module "ssm" {
     secret_key_base = var.secret_key_base
   }
 }
+
+module "clouwatch" {
+  source = "../modules/cloudwatch"
+
+  env_namespace = local.namespace
+}
