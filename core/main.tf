@@ -24,10 +24,10 @@ module "rds" {
 
   env_namespace = local.namespace
 
-  vpc_security_group_ids = module.sercurity_group.vpc_security_group_ids
+  vpc_security_group_ids = module.sercurity_group.rds_security_groups_ids
   vpc_id                 = module.vpc.vpc_id
 
-  subnets = module.vpc.private_subnet_ids
+  subnets = module.vpc.private_subnets
 
   instance_class = local.rds_instance_class
   database_name  = var.rds_database_name
@@ -36,4 +36,11 @@ module "rds" {
 
   autoscaling_min_capacity = var.rds_autoscaling_min_capacity
   autoscaling_max_capacity = var.rds_autoscaling_max_capacity
+}
+
+module "sercurity_group" {
+  source = "../modules/security_group"
+
+  namespace = local.namespace
+  vpc_id    = module.vpc.vpc_id
 }
