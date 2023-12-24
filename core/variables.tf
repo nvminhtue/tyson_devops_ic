@@ -25,3 +25,28 @@ variable "secret_key_base" {
   type        = string
   sensitive   = true
 }
+
+variable "rds_database_name" {
+  description = "RDS database name"
+  type        = string
+}
+
+variable "rds_username" {
+  description = "RDS username"
+  type        = string
+}
+
+variable "rds_password" {
+  description = "RDS password"
+  type        = string
+}
+
+variable "rds_autoscaling_min_capacity" {
+  description = "Minimum number of RDS read replicas when autoscaling is enabled"
+  type        = number
+}
+
+variable "rds_autoscaling_max_capacity" {
+  description = "Maximum number of RDS read replicas when autoscaling is enabled"
+  type        = number
+}
