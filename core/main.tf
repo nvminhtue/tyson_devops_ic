@@ -7,7 +7,7 @@ module "vpc" {
 module "ssm" {
   source = "../modules/ssm"
 
-  env_namespace = local.namespace
+  namespace = local.namespace
   secrets = {
     secret_key_base = var.secret_key_base
   }
@@ -22,7 +22,7 @@ module "cloudwatch" {
 module "rds" {
   source = "../modules/rds"
 
-  env_namespace = local.namespace
+  namespace = local.namespace
 
   vpc_security_group_ids = module.sercurity_group.rds_security_groups_ids
   vpc_id                 = module.vpc.vpc_id
