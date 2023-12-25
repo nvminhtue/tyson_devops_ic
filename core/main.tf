@@ -13,8 +13,8 @@ module "ssm" {
   }
 }
 
-module "clouwatch" {
+module "cloudwatch" {
   source = "../modules/cloudwatch"
 
-  env_namespace = local.namespace
+  namespace = local.namespace
 }
