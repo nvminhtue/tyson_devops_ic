@@ -9,7 +9,7 @@ resource "aws_lb" "this" {
 
 
   access_logs {
-    bucket  = var.aws_log_bucket_name
+    bucket  = "${var.namespace}-alb-logs"
     enabled = true
   }
 }
