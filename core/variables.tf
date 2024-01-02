@@ -41,3 +41,15 @@ variable "rds_password" {
   type        = string
   sensitive   = true
 }
+
+variable "app_port" {
+  description = "Application running port"
+  type        = number
+  default     = 4000
+}
+
+variable "health_check_path" {
+  description = "Application's health check path"
+  type        = string
+  default     = "/"
+}
