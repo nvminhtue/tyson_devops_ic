@@ -37,8 +37,10 @@ module "rds" {
 module "security_group" {
   source = "../modules/security_group"
 
-  namespace = local.namespace
-  vpc_id    = module.vpc.vpc_id
+  namespace                   = local.namespace
+  vpc_id                      = module.vpc.vpc_id
+  private_subnets_cidr_blocks = module.vpc.private_subnets_cidr_blocks
+  app_port                    = var.app_port
 }
 
 module "s3" {
@@ -69,4 +71,45 @@ module "alb" {
   subnets_ids        = module.vpc.public_subnets
   security_group_ids = module.sercurity_group.alb_security_groups_ids
   health_check_path  = var.health_check_path
+}
+
+module "ecs_cluster" {
+  source = "../modules/ecs_cluster"
+
+  namespace = local.namespace
+}
+
+module "ecs" {
+  source = "../modules/ecs"
+
+  namespace = local.namespace
+  subnets   = module.vpc.private_subnets
+  region    = local.region
+  app_host  = module.alb.alb_dns_name
+  app_port  = var.app_port
+
+  ecs_cluster_id   = module.ecs_cluster.aws_ecs_cluster_attributes.id
+  ecs_cluster_name = module.ecs_cluster.aws_ecs_cluster_attributes.name
+
+  ecr_repo_name = local.current_ecs_config.ecr_repo_name
+  ecr_tag       = local.current_ecs_config.ecr_tag
+
+  security_groups      = module.sercurity_group.alb_security_groups_ids
+  alb_target_group_arn = module.alb.alb_target_group_arn
+
+  aws_cloudwatch_log_group_name = module.cloudwatch.aws_cloudwatch_log_group_name
+
+  desired_count                        = local.current_ecs_config.desired_count
+  cpu                                  = local.current_ecs_config.task_cpu
+  memory                               = local.current_ecs_config.task_memory
+  deployment_maximum_percent           = local.current_ecs_config.deployment_maximum_percent
+  deployment_minimum_healthy_percent   = local.current_ecs_config.deployment_minimum_healthy_percent
+  max_instance_count                   = local.current_ecs_config.max_instance_count
+  min_instance_count                   = local.current_ecs_config.min_instance_count
+  autoscaling_target_memory_percentage = local.current_ecs_config.autoscaling_target_memory_percentage
+  autoscaling_target_cpu_percentage    = local.current_ecs_config.autoscaling_target_cpu_percentage
+
+  container_envs    = local.ecs_container_variables
+  secrets_variables = module.ssm.secrets_variables
+  secrets_arns      = module.ssm.secret_arns
 }
