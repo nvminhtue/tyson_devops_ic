@@ -53,11 +53,11 @@ resource "aws_security_group_rule" "ecs_fargate_ingress_private" {
   type              = "ingress"
   security_group_id = aws_security_group.ecs_fargate.id
   // All protocols, ports are allowed to ECS Fargate
-  protocol          = "-1"
-  from_port         = 0
-  to_port           = 65535
-  cidr_blocks       = var.private_subnets_cidr_blocks
-  description       = "From private subnets to ECS Fargate"
+  protocol    = "-1"
+  from_port   = 0
+  to_port     = 65535
+  cidr_blocks = var.private_subnets_cidr_blocks
+  description = "From private subnets to ECS Fargate"
 }
 
 resource "aws_security_group_rule" "ecs_fargate_egress_anywhere" {
@@ -65,8 +65,8 @@ resource "aws_security_group_rule" "ecs_fargate_egress_anywhere" {
   security_group_id = aws_security_group.ecs_fargate.id
   protocol          = "-1"
   // No specific ports
-  from_port         = 0
-  to_port           = 0
-  cidr_blocks       = ["0.0.0.0/0"]
-  description       = "From ECS Fargate to anywhere"
+  from_port   = 0
+  to_port     = 0
+  cidr_blocks = ["0.0.0.0/0"]
+  description = "From ECS Fargate to anywhere"
 }
