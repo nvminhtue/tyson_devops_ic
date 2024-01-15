@@ -36,13 +36,13 @@ variable "deployment_maximum_percent" {
 variable "deployment_minimum_healthy_percent" {
   description = "The lower limit (as a percentage of the service's desiredCount) of the number of running tasks that must remain running and healthy in a service during a deployment, e.g. 100"
   type        = number
-}  
+}
 
 variable "desired_count" {
   description = "The number of instances of the task definition to place and keep running"
   type        = number
 }
-  
+
 variable "subnets" {
   description = "List of subnets"
   type        = list(string)
@@ -87,7 +87,7 @@ variable "autoscaling_target_memory_percentage" {
   description = "Autoscaling target memory percentage"
   type        = number
 }
-  
+
 variable "autoscaling_target_cpu_percentage" {
   description = "Autoscaling target cpu percentage"
   type        = number
@@ -110,16 +110,16 @@ variable "aws_cloudwatch_log_group_name" {
 
 variable "container_envs" {
   description = "Container environment variables"
-  type        = set(object({
-    name = string
+  type = set(object({
+    name  = string
     value = string
   }))
 }
 
 variable "secrets_variables" {
   description = "Container secrets environment variables"
-  type        = set(object({
-    name = string
+  type = set(object({
+    name      = string
     valueFrom = string
   }))
 }
