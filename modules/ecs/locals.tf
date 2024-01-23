@@ -63,7 +63,7 @@ locals {
     ecr_repo_name                      = var.ecr_repo_name
     ecr_tag                            = var.ecr_tag
     aws_cloudwatch_log_group_name      = var.aws_cloudwatch_log_group_name
-    environment_variables                     = var.environment_variables
+    environment_variables              = var.environment_variables
     secrets_variables                  = var.secrets_variables
   }
 
