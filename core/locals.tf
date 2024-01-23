@@ -10,10 +10,10 @@ locals {
     staging = jsondecode(file("assets/ecs_config/staging.json"))
     prod    = jsondecode(file("assets/ecs_config/prod.json"))
   }
-  current_ecs_config      = local.ecs_config[var.environment]
-  ecs_container_variables = local.container_variables[var.environment]
+  current_ecs_config = local.ecs_config[var.environment]
   container_variables = {
     staging = [for k, v in jsondecode(file("assets/container_variables/staging.json")) : { name = k, value = v }]
     prod    = [for k, v in jsondecode(file("assets/container_variables/prod.json")) : { name = k, value = v }]
   }
+  ecs_container_variables = local.container_variables[var.environment]
 }
