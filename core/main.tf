@@ -109,7 +109,7 @@ module "ecs" {
   autoscaling_target_memory_percentage = local.current_ecs_config.autoscaling_target_memory_percentage
   autoscaling_target_cpu_percentage    = local.current_ecs_config.autoscaling_target_cpu_percentage
 
-  container_envs    = local.ecs_container_variables
-  secrets_variables = module.ssm.secrets_variables
-  secrets_arns      = module.ssm.secret_arns
+  environment_variables = local.ecs_container_variables
+  secrets_variables     = module.ssm.secrets_variables
+  secrets_arns          = module.ssm.secret_arns
 }
