@@ -20,7 +20,7 @@
         "awslogs-group": "${aws_cloudwatch_log_group_name}"
       }
     },
-    "environment": ${jsonencode(container_envs)},
+    "environment": ${jsonencode(environment_variables)},
     "secrets": ${jsonencode(secrets_variables)},
     "ulimits": [
       {

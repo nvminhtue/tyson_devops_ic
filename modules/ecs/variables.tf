@@ -108,7 +108,7 @@ variable "aws_cloudwatch_log_group_name" {
   type        = string
 }
 
-variable "container_envs" {
+variable "environment_variables" {
   description = "Container environment variables"
   type = set(object({
     name  = string
