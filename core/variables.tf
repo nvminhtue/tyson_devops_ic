@@ -50,3 +50,15 @@ variable "rds_autoscaling_max_capacity" {
   description = "Maximum number of RDS read replicas when autoscaling is enabled"
   type        = number
 }
+
+variable "app_port" {
+  description = "Application running port"
+  type        = number
+  default     = 4000
+}
+
+variable "health_check_path" {
+  description = "Application's health check path"
+  type        = string
+  default     = "/"
+}
