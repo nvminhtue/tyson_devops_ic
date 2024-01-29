@@ -4,7 +4,7 @@ locals {
 
   all_prefixes = concat(local.primary_prefixes, local.secondary_prefixes)
 
-  //Sets max amount of the latest develop images to be kept
+  // Sets max amount of the latest images to be kept
   image_limit = 5
 
   primary_image_rules = [
@@ -56,4 +56,6 @@ locals {
       }
     }
   ]
+
+  image_tag_mutability = "IMMUTABLE"
 }

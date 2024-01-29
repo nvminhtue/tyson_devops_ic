@@ -8,12 +8,6 @@ variable "owner" {
   type        = string
 }
 
-variable "image_limit" {
-  description = "Sets max amount of the latest develop images to be kept"
-  type        = number
-  default     = 5
-}
-
 variable "aws_access_key" {
   description = "AWS access key"
   type        = string
