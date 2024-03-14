@@ -1,4 +1,5 @@
 // Define groups
+# Ignore the MFA enforcement activated
 # trivy:ignore:AVD-AWS-0123
 resource "aws_iam_group" "admin" {
   name = "Admin-group"
@@ -15,6 +16,7 @@ resource "aws_iam_group" "bot" {
 }
 
 // Define policies
+# Allow using wildcard resources for IAM actions
 # trivy:ignore:AVD-AWS-0057
 resource "aws_iam_group_policy" "developer_allow_manage_own_credentials" {
   group  = aws_iam_group.developer.name

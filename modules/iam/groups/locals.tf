@@ -1,4 +1,6 @@
 locals {
+  # Allows MFA-authenticated IAM users to manage their own credentials on the Security credentials page
+  # https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_examples_aws_my-sec-creds-self-manage.html
   allow_manage_own_credentials = jsonencode({
     Version = "2012-10-17"
     Statement = [
