@@ -33,9 +33,6 @@ module "rds" {
   database_name  = var.rds_database_name
   username       = var.rds_username
   password       = var.rds_password
-
-  autoscaling_min_capacity = var.rds_autoscaling_min_capacity
-  autoscaling_max_capacity = var.rds_autoscaling_max_capacity
 }
 
 module "security_group" {

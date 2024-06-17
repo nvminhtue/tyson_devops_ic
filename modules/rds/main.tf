@@ -17,8 +17,8 @@ module "rds" {
   }
 
   autoscaling_enabled      = true
-  autoscaling_min_capacity = var.autoscaling_min_capacity
-  autoscaling_max_capacity = var.autoscaling_max_capacity
+  autoscaling_min_capacity = local.autoscaling_min_capacity
+  autoscaling_max_capacity = local.autoscaling_max_capacity
 
   create_monitoring_role = false
   create_security_group  = false

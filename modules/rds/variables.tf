@@ -23,18 +23,6 @@ variable "instance_class" {
   type        = string
 }
 
-variable "autoscaling_min_capacity" {
-  description = "The minimum number of RDS instances"
-  type        = number
-  default     = 0
-}
-
-variable "autoscaling_max_capacity" {
-  description = "The maximum number of RDS instances"
-  type        = number
-  default     = 0
-}
-
 variable "database_name" {
   description = "The name of the database to create"
   type        = string
@@ -48,4 +36,5 @@ variable "username" {
 variable "password" {
   description = "RDS password. Some special chars might result in a wrong encoding of the DATABASE_URL"
   type        = string
+  sensitive   = true
 }
