@@ -19,18 +19,3 @@ variable "aws_secret_key" {
   type        = string
   sensitive   = true
 }
-
-variable "iam_admin_emails" {
-  description = "List of IAM admin emails"
-  type        = list(string)
-}
-
-variable "iam_developer_emails" {
-  description = "List of IAM developer emails"
-  type        = list(string)
-}
-
-variable "iam_bot_emails" {
-  description = "List of IAM bot emails"
-  type        = list(string)
-}
