@@ -18,11 +18,6 @@ variable "vpc_security_group_ids" {
   type        = list(string)
 }
 
-variable "instance_class" {
-  description = "The RDS instance type to use, e.g. `db.t3.medium`"
-  type        = string
-}
-
 variable "database_name" {
   description = "The name of the database to create"
   type        = string

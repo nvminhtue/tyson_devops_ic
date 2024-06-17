@@ -11,7 +11,7 @@ module "rds" {
   subnets                = var.subnets
   vpc_security_group_ids = var.vpc_security_group_ids
 
-  instance_class = var.instance_class
+  instance_class = local.instance_class
   instances = {
     one = {}
   }

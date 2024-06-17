@@ -29,10 +29,9 @@ module "rds" {
 
   subnets = module.vpc.private_subnets
 
-  instance_class = local.rds_instance_class
-  database_name  = var.rds_database_name
-  username       = var.rds_username
-  password       = var.rds_password
+  database_name = var.rds_database_name
+  username      = var.rds_username
+  password      = var.rds_password
 }
 
 module "security_group" {
