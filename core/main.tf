@@ -40,3 +40,9 @@ module "security_group" {
   namespace = local.namespace
   vpc_id    = module.vpc.vpc_id
 }
+
+module "s3" {
+  source = "../modules/s3"
+
+  namespace = local.namespace
+}
