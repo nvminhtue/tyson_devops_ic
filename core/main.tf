@@ -50,10 +50,13 @@ module "s3" {
 module "alb" {
   source = "../modules/alb"
 
-  vpc_id             = module.vpc.vpc_id
-  namespace          = local.namespace
-  app_port           = var.app_port
+  vpc_id = module.vpc.vpc_id
+
   subnets_ids        = module.vpc.public_subnets
   security_group_ids = module.security_group.alb_security_groups_ids
-  health_check_path  = var.health_check_path
+
+  health_check_path = var.health_check_path
+  app_port          = var.app_port
+
+  namespace = local.namespace
 }
