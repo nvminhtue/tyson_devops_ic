@@ -23,7 +23,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
     id = "expired_objects"
 
     expiration {
-      days = var.expiration_in_days
+      days = local.s3_objects_expiration_in_days
     }
 
     status = "Enabled"
