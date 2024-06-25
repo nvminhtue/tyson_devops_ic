@@ -16,7 +16,7 @@ resource "aws_lb" "this" {
 
 resource "aws_lb_target_group" "this" {
   name        = "${var.namespace}-alb-tg"
-  port        = local.app_port
+  port        = var.app_port
   protocol    = "HTTP"
   vpc_id      = var.vpc_id
   target_type = "ip"
@@ -27,8 +27,8 @@ resource "aws_lb_target_group" "this" {
     protocol            = "HTTP"
     matcher             = "200-299"
     timeout             = 3
-    path                = local.health_check_path
-    port                = local.app_port
+    path                = var.health_check_path
+    port                = var.app_port
     unhealthy_threshold = 2
   }
 }

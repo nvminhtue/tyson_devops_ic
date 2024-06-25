@@ -55,5 +55,7 @@ module "alb" {
   subnets_ids        = module.vpc.public_subnets
   security_group_ids = module.security_group.alb_security_groups_ids
 
-  namespace = local.namespace
+  namespace         = local.namespace
+  app_port          = local.app_port
+  health_check_path = local.health_check_path
 }
