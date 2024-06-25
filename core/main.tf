@@ -40,7 +40,7 @@ module "security_group" {
   namespace                   = local.namespace
   vpc_id                      = module.vpc.vpc_id
   private_subnets_cidr_blocks = module.vpc.private_subnets_cidr_blocks
-  app_port                    = var.app_port
+  app_port                    = local.app_port
 }
 
 module "s3" {
@@ -62,17 +62,6 @@ module "alb" {
   health_check_path = local.health_check_path
 }
 
-module "alb" {
-  source = "../modules/alb"
-
-  vpc_id             = module.vpc.vpc_id
-  namespace          = local.namespace
-  app_port           = var.app_port
-  subnets_ids        = module.vpc.public_subnets
-  security_group_ids = module.sercurity_group.alb_security_groups_ids
-  health_check_path  = var.health_check_path
-}
-
 module "ecs_cluster" {
   source = "../modules/ecs_cluster"
 
@@ -86,7 +75,7 @@ module "ecs" {
   subnets   = module.vpc.private_subnets
   region    = local.region
   app_host  = module.alb.alb_dns_name
-  app_port  = var.app_port
+  app_port  = local.app_port
 
   ecs_cluster_id   = module.ecs_cluster.aws_ecs_cluster_attributes.id
   ecs_cluster_name = module.ecs_cluster.aws_ecs_cluster_attributes.name
