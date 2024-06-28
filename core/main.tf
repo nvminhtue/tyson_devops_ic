@@ -102,3 +102,11 @@ module "ecs" {
   secrets_variables     = module.ssm.secrets_variables
   secrets_arns          = module.ssm.secret_arns
 }
+
+module "elasticache" {
+  source = "../modules/elasticache"
+
+  namespace          = local.namespace
+  subnets_ids        = module.vpc.private_subnets
+  security_group_ids = module.security_group.elasticache_security_groups_ids
+}
