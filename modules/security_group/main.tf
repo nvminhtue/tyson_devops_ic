@@ -70,3 +70,23 @@ resource "aws_security_group_rule" "ecs_fargate_egress_anywhere" {
   cidr_blocks = ["0.0.0.0/0"]
   description = "From ECS Fargate to anywhere"
 }
+
+resource "aws_security_group" "elasticache" {
+  name        = "${var.namespace}-elasticache-sg"
+  description = "Elasticache security group"
+  vpc_id      = var.vpc_id
+
+  tags = {
+    Name = "${var.namespace}-elasticache-sg"
+  }
+}
+
+resource "aws_security_group_rule" "elasticache_ingress_fargate" {
+  description              = "From ECS Fargate to Elasticache"
+  type                     = "ingress"
+  security_group_id        = aws_security_group.elasticache.id
+  protocol                 = "tcp"
+  from_port                = 6379
+  to_port                  = 6379
+  source_security_group_id = aws_security_group.ecs_fargate.id
+}
