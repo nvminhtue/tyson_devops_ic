@@ -41,3 +41,28 @@ variable "rds_password" {
   type        = string
   sensitive   = true
 }
+
+variable "bastion_instance_type" {
+  description = "The bastion instance type"
+  default     = "t3.nano"
+}
+
+variable "bastion_instance_desired_count" {
+  description = "The desired number of the bastion instance"
+  default     = 1
+}
+
+variable "bastion_max_instance_count" {
+  description = "The maximum number of the instance"
+  default     = 1
+}
+
+variable "bastion_min_instance_count" {
+  description = "The minimum number of the instance"
+  default     = 1
+}
+
+variable "bastion_ami_id" {
+  description = "The AMI ID for the instance"
+  default     = "ami-058b428b3b45defec"
+}

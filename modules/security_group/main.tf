@@ -18,6 +18,16 @@ resource "aws_security_group" "alb" {
   }
 }
 
+resource "aws_security_group" "bastion" {
+  name        = "${var.namespace}-bastion-sg"
+  description = "Bastion Host security group"
+  vpc_id      = var.vpc_id
+
+  tags = {
+    Name = "${var.namespace}-bastion-sg"
+  }
+}
+
 resource "aws_security_group_rule" "alb_ingress_http" {
   type              = "ingress"
   security_group_id = aws_security_group.alb.id
@@ -89,4 +99,34 @@ resource "aws_security_group_rule" "elasticache_ingress_fargate" {
   from_port                = 6379
   to_port                  = 6379
   source_security_group_id = aws_security_group.ecs_fargate.id
+}
+
+resource "aws_security_group_rule" "bastion_ingress_ssh" {
+  description       = "SSH to bastion from anywhere"
+  type              = "ingress"
+  security_group_id = aws_security_group.bastion.id
+  protocol          = "tcp"
+  from_port         = 22
+  to_port           = 22
+  cidr_blocks       = ["0.0.0.0/0"]
+}
+
+resource "aws_security_group_rule" "bastion_egress_rds" {
+  description              = "Outgoing from bastion to RDS"
+  type                     = "egress"
+  security_group_id        = aws_security_group.bastion.id
+  protocol                 = "tcp"
+  from_port                = 5432
+  to_port                  = 5432
+  source_security_group_id = aws_security_group.rds.id
+}
+
+resource "aws_security_group_rule" "rds_ingress_bastion" {
+  description              = "Incoming from bastion to RDS"
+  type                     = "ingress"
+  security_group_id        = aws_security_group.rds.id
+  from_port                = 5432
+  to_port                  = 5432
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.bastion.id
 }

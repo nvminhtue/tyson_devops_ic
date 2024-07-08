@@ -12,3 +12,8 @@ output "elasticache_security_groups_ids" {
   description = "List of Elasticache security group IDs"
   value       = [aws_security_group.elasticache.id]
 }
+
+output "bastion_security_groups_ids" {
+  description = "List of bastion security group IDs"
+  value       = [aws_security_group.bastion.id]
+}

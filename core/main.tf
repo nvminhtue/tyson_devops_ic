@@ -110,3 +110,19 @@ module "elasticache" {
   subnets_ids        = module.vpc.private_subnets
   security_group_ids = module.security_group.elasticache_security_groups_ids
 }
+
+module "bastion" {
+  source = "../modules/bastion"
+
+  subnet_ids                  = module.vpc.public_subnets
+  instance_security_group_ids = module.security_group.bastion_security_groups_ids
+
+  namespace     = local.namespace
+  instance_type = var.bastion_instance_type
+
+  min_instance_count     = var.bastion_min_instance_count
+  max_instance_count     = var.bastion_max_instance_count
+  instance_desired_count = var.bastion_instance_desired_count
+
+  ami_id = var.bastion_ami_id
+}

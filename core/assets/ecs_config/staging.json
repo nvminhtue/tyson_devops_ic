@@ -1,5 +1,5 @@
 {
-    "ecr_repo_name": "tyson-devops-ic",
+    "ecr_repo_name": "tyson-app",
     "ecr_tag": "staging",
     "task_cpu": 512,
     "task_memory": 1024,
