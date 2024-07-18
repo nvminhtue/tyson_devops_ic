@@ -1,6 +1,6 @@
 module "rds" {
   source  = "terraform-aws-modules/rds-aurora/aws"
-  version = "9.0.0"
+  version = "9.5.0"
 
   name = "${var.namespace}-aurora-db"
 
