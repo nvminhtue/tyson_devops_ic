@@ -11,6 +11,8 @@ module "rds" {
   subnets                = var.subnets
   vpc_security_group_ids = var.vpc_security_group_ids
 
+  db_subnet_group_name = "${var.namespace}-aurora-db-subnet-group"
+
   instance_class = local.instance_class
   instances = {
     one = {}
