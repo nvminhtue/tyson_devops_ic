@@ -1,8 +1,6 @@
 module "rds" {
   source  = "terraform-aws-modules/rds-aurora/aws"
-  version = "9.5.0"
-
-  db_subnet_group_name = "${var.namespace}-aurora-db"
+  version = "6.2.0"
 
   name = "${var.namespace}-aurora-db"
 
@@ -15,7 +13,7 @@ module "rds" {
 
   instance_class = local.instance_class
   instances = {
-    one = {}
+    main = {}
   }
 
   autoscaling_enabled      = true
@@ -24,6 +22,7 @@ module "rds" {
 
   create_monitoring_role = false
   create_security_group  = false
+  storage_encrypted      = true
 
   publicly_accessible = false
 

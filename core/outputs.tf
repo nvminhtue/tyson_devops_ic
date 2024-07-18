@@ -1,3 +1,3 @@
-output "private_subnets" {
-  value = module.vpc.private_subnets
+output "db_endpoint" {
+  value = module.db.cluster_endpoint
 }
