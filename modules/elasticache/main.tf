@@ -6,6 +6,8 @@ resource "aws_elasticache_subnet_group" "this" {
 resource "aws_elasticache_replication_group" "this" {
   replication_group_id = "${var.namespace}-replication-group"
 
+  description = "${var.namespace}-replication-group replication group"
+
   engine         = local.engine
   engine_version = local.engine_version
   node_type      = local.node_type

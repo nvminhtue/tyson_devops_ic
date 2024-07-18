@@ -114,17 +114,13 @@ locals {
   })
 
   full_iam_access_policy = jsonencode({
-    version = "2012-10-17"
-    statement = [
+    Version = "2012-10-17"
+    Statement = [
       {
-        sid    = "AllowManageRoleAndPolicy"
-        effect = "Allow"
-        resource = [
-          "arn:aws:iam::*:",
-        ]
-        actions = [
-          "iam:*"
-        ]
+        Sid      = "AllowManageRoleAndPolicy"
+        Effect   = "Allow"
+        Resource = ["arn:aws:iam::*"]
+        Action   = ["iam:*"]
       }
     ]
   })

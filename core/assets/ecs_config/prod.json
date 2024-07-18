@@ -1,5 +1,5 @@
 {
-    "ecr_repo_name": "tyson-devops-ic",
+    "ecr_repo_name": "tyson-app",
     "ecr_tag": "prod",
     "task_cpu": 1024,
     "task_memory": 2048,
