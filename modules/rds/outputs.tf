@@ -3,5 +3,5 @@ output "cluster_endpoint" {
 }
 
 output "cluster_id" {
-  value = module.db.cluster_id
+  value = module.rds.cluster_id
 }
