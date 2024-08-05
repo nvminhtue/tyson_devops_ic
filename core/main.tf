@@ -83,7 +83,7 @@ module "ecs" {
   ecr_repo_name = local.current_ecs_config.ecr_repo_name
   ecr_tag       = local.current_ecs_config.ecr_tag
 
-  security_groups      = module.security_group.alb_security_groups_ids
+  security_groups      = module.security_group.ecs_security_group_ids
   alb_target_group_arn = module.alb.alb_target_group_arn
 
   aws_cloudwatch_log_group_name = module.cloudwatch.aws_cloudwatch_log_group_name

@@ -101,6 +101,16 @@ resource "aws_security_group_rule" "elasticache_ingress_fargate" {
   source_security_group_id = aws_security_group.ecs_fargate.id
 }
 
+resource "aws_security_group_rule" "rds_ingress_app_fargate" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.rds.id
+  from_port                = 5432
+  to_port                  = 5432
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.ecs_fargate.id
+  description              = "From app to DB"
+}
+
 resource "aws_security_group_rule" "bastion_ingress_ssh" {
   description       = "SSH to bastion from anywhere"
   type              = "ingress"
