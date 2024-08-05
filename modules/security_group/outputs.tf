@@ -17,3 +17,8 @@ output "bastion_security_groups_ids" {
   description = "List of bastion security group IDs"
   value       = [aws_security_group.bastion.id]
 }
+
+output "ecs_security_group_ids" {
+  description = "Security group IDs for ECS Fargate"
+  value       = [aws_security_group.ecs_fargate.id]
+}
