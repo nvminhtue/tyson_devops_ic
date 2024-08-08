@@ -9,5 +9,6 @@
     "min_instance_count": 2,
     "max_instance_count": 3,
     "autoscaling_target_cpu_percentage": 75,
-    "autoscaling_target_memory_percentage": 75
+    "autoscaling_target_memory_percentage": 75,
+    "health_check_grace_period_seconds": 30
 }

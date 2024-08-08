@@ -97,6 +97,7 @@ module "ecs" {
   min_instance_count                   = local.current_ecs_config.min_instance_count
   autoscaling_target_memory_percentage = local.current_ecs_config.autoscaling_target_memory_percentage
   autoscaling_target_cpu_percentage    = local.current_ecs_config.autoscaling_target_cpu_percentage
+  health_check_grace_period_seconds    = local.current_ecs_config.health_check_grace_period_seconds
 
   environment_variables = local.ecs_container_variables
   secrets_variables     = module.ssm.secrets_variables

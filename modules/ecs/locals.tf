@@ -67,7 +67,7 @@ locals {
     secrets_variables                  = var.secrets_variables
   }
 
-  container_name = "${var.namespace}"
+  container_name = var.namespace
   service_name   = "${local.container_name}-service"
 
   scale_in_cooldown_period  = 300
