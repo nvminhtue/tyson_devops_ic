@@ -38,6 +38,16 @@ resource "aws_security_group_rule" "alb_ingress_http" {
   description       = "From HTTP to ALB"
 }
 
+resource "aws_security_group_rule" "alb_egress" {
+  type              = "egress"
+  security_group_id = aws_security_group.alb.id
+  protocol          = "tcp"
+  from_port         = var.app_port
+  to_port           = var.app_port
+  cidr_blocks       = ["0.0.0.0/0"]
+  description       = "From ALB to ECS Fargate"
+}
+
 resource "aws_security_group" "ecs_fargate" {
   name        = "${var.namespace}-ecs-fargate-sg"
   description = "ECS Fargate security group"
