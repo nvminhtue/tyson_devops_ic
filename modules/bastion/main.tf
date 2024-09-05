@@ -2,7 +2,7 @@ resource "aws_launch_template" "bastion_instance" {
   name_prefix   = "${var.namespace}-bastion-"
   image_id      = data.aws_ami.this.id
   instance_type = var.instance_type
-  key_name      = "${var.namespace}-bastion"
+  # key_name      = "${var.namespace}-bastion"
 
   network_interfaces {
     associate_public_ip_address = true
