@@ -9,17 +9,6 @@ resource "aws_launch_template" "bastion_instance" {
     security_groups             = var.instance_security_group_ids
   }
 
-  instance_requirements {
-    // t3.nano
-    vcpu_count {
-      min = 1
-    }
-
-    memory_mib {
-      min = 512
-    }
-  }
-
   metadata_options {
     http_tokens = "required"
   }
