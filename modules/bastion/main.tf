@@ -4,10 +4,11 @@ resource "aws_launch_template" "bastion_instance" {
   instance_type = var.instance_type
   key_name      = "${var.namespace}-bastion"
 
-  vpc_security_group_ids = var.instance_security_group_ids
+  # vpc_security_group_ids = var.instance_security_group_ids
 
   network_interfaces {
     associate_public_ip_address = true
+    security_groups = var.instance_security_group_ids
   }
 
   metadata_options {
