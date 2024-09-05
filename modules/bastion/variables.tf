@@ -35,5 +35,5 @@ variable "min_instance_count" {
 
 variable "ami_id" {
   description = "The AMI ID for the instance"
-  default     = "ami-058b428b3b45defec"
+  default     = "ami-0d5a0fb3057b73a85"
 }
