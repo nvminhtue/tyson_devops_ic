@@ -1,7 +1,7 @@
 resource "aws_launch_template" "bastion_instance" {
   name_prefix   = "${var.namespace}-bastion-"
   # image_id      = data.aws_ami.this.id
-  image_id      = "ami-0b748249d064044e8"
+  image_id      = "ami-01811d4912b4ccb26"
   instance_type = var.instance_type
   # key_name      = "${var.namespace}-bastion"
 
