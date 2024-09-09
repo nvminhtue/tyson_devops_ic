@@ -1,7 +1,7 @@
 resource "aws_launch_template" "bastion_instance" {
   name_prefix = "${var.namespace}-bastion-"
   # image_id      = data.aws_ami.this.id
-  image_id = "ami-01811d4912b4ccb26"
+  image_id      = "ami-01811d4912b4ccb26"
   # instance_type = var.instance_type
   # key_name      = "${var.namespace}-bastion"
 
@@ -27,16 +27,16 @@ resource "aws_launch_template" "bastion_instance" {
 
   ebs_optimized = true
 
-  instance_requirements {
-    vcpu_count {
-      min = 1
-      max = 1
-    }
-    memory_mib {
-      min = 512
-      max = 1024
-    }
-  }
+  # instance_requirements {
+  #   vcpu_count {
+  #     min = 1
+  #     max = 1
+  #   }
+  #   memory_mib {
+  #     min = 512
+  #     max = 1024
+  #   }
+  # }
 
   # iam_instance_profile {
   #   name = aws_iam_instance_profile.bastion.name
@@ -59,13 +59,9 @@ resource "aws_autoscaling_group" "bastion_instance" {
   desired_capacity    = var.instance_desired_count
   vpc_zone_identifier = var.subnet_ids
 
-  mixed_instances_policy {
-    launch_template {
-      launch_template_specification {
-        launch_template_id = aws_launch_template.bastion_instance.id
-        version            = aws_launch_template.bastion_instance.latest_version
-      }
-    }
+  launch_template {
+    id      = aws_launch_template.bastion_instance.id
+    version = aws_launch_template.bastion_instance.latest_version
   }
 
   tag {
