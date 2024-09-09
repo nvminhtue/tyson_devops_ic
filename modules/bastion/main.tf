@@ -29,7 +29,7 @@ resource "aws_launch_template" "bastion_instance" {
 
   instance_requirements {
     vcpu_count {
-      min = 0.5
+      min = 1
     }
     memory_mib {
       min = 512
