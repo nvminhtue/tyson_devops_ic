@@ -1,5 +1,5 @@
 resource "aws_launch_template" "bastion_instance" {
-  name_prefix   = "${var.namespace}-bastion-"
+  name_prefix = "${var.namespace}-bastion-"
   # image_id      = data.aws_ami.this.id
   image_id      = "ami-01811d4912b4ccb26"
   instance_type = var.instance_type
@@ -12,6 +12,19 @@ resource "aws_launch_template" "bastion_instance" {
       volume_size = 20
     }
   }
+
+  capacity_reservation_specification {
+    capacity_reservation_preference = "open"
+  }
+  credit_specification {
+    cpu_credits = "unlimited"
+  }
+  disable_api_termination = false
+  ebs_optimized           = true
+
+  # iam_instance_profile {
+  #   name = aws_iam_instance_profile.bastion.name
+  # }
 
   network_interfaces {
     associate_public_ip_address = true
