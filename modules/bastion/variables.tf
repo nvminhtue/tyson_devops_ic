@@ -15,7 +15,7 @@ variable "instance_security_group_ids" {
 
 variable "instance_type" {
   description = "The instance type"
-  default     = "t3.medium"
+  default     = "t3a.micro"
 }
 
 variable "instance_desired_count" {
