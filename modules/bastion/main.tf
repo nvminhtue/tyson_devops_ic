@@ -2,7 +2,7 @@ resource "aws_launch_template" "bastion_instance" {
   name_prefix = "${var.namespace}-bastion-"
   # image_id      = data.aws_ami.this.id
   image_id      = "ami-01811d4912b4ccb26"
-  instance_type = var.instance_type
+  # instance_type = var.instance_type
   # key_name      = "${var.namespace}-bastion"
 
   block_device_mappings {
@@ -30,9 +30,11 @@ resource "aws_launch_template" "bastion_instance" {
   instance_requirements {
     vcpu_count {
       min = 1
+      max = 1
     }
     memory_mib {
       min = 512
+      max = 1024
     }
   }
 
