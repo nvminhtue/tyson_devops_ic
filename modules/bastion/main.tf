@@ -73,18 +73,13 @@ resource "aws_launch_configuration" "bastion_instance" {
   }
 }
 
-
 resource "aws_autoscaling_group" "bastion_instance" {
-  name                = "${var.namespace}-bastion"
-  min_size            = var.min_instance_count
-  max_size            = var.max_instance_count
-  desired_capacity    = var.instance_desired_count
-  vpc_zone_identifier = var.subnet_ids
-
-  launch_template {
-    id      = aws_launch_template.bastion_instance.id
-    version = aws_launch_template.bastion_instance.latest_version
-  }
+  name                 = "${var.namespace}-bastion"
+  launch_configuration = aws_launch_configuration.bastion_instance.name
+  min_size             = var.min_instance_count
+  max_size             = var.max_instance_count
+  desired_capacity     = var.instance_desired_count
+  vpc_zone_identifier  = var.subnet_ids
 
   tag {
     key                 = "Name"
@@ -92,3 +87,23 @@ resource "aws_autoscaling_group" "bastion_instance" {
     propagate_at_launch = true
   }
 }
+
+
+# resource "aws_autoscaling_group" "bastion_instance" {
+#   name                = "${var.namespace}-bastion"
+#   min_size            = var.min_instance_count
+#   max_size            = var.max_instance_count
+#   desired_capacity    = var.instance_desired_count
+#   vpc_zone_identifier = var.subnet_ids
+
+#   launch_template {
+#     id      = aws_launch_template.bastion_instance.id
+#     version = aws_launch_template.bastion_instance.latest_version
+#   }
+
+#   tag {
+#     key                 = "Name"
+#     value               = "${var.namespace}-bastion"
+#     propagate_at_launch = true
+#   }
+# }
