@@ -27,6 +27,15 @@ resource "aws_launch_template" "bastion_instance" {
 
   ebs_optimized = true
 
+  instance_requirements {
+    vcpu_count {
+      min = 0.5
+    }
+    memory_mib {
+      min = 512
+    }
+  }
+
   # iam_instance_profile {
   #   name = aws_iam_instance_profile.bastion.name
   # }
