@@ -1,56 +1,78 @@
-resource "aws_launch_template" "bastion_instance" {
-  name_prefix = "${var.namespace}-bastion-"
-  # image_id      = data.aws_ami.this.id
-  image_id      = "ami-01811d4912b4ccb26"
-  instance_type = var.instance_type
-  # key_name      = "${var.namespace}-bastion"
+# resource "aws_launch_template" "bastion_instance" {
+#   name_prefix = "${var.namespace}-bastion-"
+#   # image_id      = data.aws_ami.this.id
+#   image_id      = "ami-01811d4912b4ccb26"
+#   instance_type = var.instance_type
+#   # key_name      = "${var.namespace}-bastion"
 
-  block_device_mappings {
-    device_name = "/dev/sda1"
+#   block_device_mappings {
+#     device_name = "/dev/sda1"
 
-    ebs {
-      volume_size           = 20
-      volume_type           = "gp3"
-      encrypted             = true
-      delete_on_termination = true
-    }
-  }
+#     ebs {
+#       volume_size           = 20
+#       volume_type           = "gp3"
+#       encrypted             = true
+#       delete_on_termination = true
+#     }
+#   }
 
-  capacity_reservation_specification {
-    capacity_reservation_preference = "open"
-  }
-  credit_specification {
-    cpu_credits = "unlimited"
-  }
-  disable_api_termination              = false
-  instance_initiated_shutdown_behavior = "terminate"
+#   capacity_reservation_specification {
+#     capacity_reservation_preference = "open"
+#   }
+#   credit_specification {
+#     cpu_credits = "unlimited"
+#   }
+#   disable_api_termination              = false
+#   instance_initiated_shutdown_behavior = "terminate"
 
-  ebs_optimized = true
+#   ebs_optimized = true
 
-  # instance_requirements {
-  #   vcpu_count {
-  #     min = 1
-  #     max = 1
-  #   }
-  #   memory_mib {
-  #     min = 512
-  #     max = 1024
-  #   }
-  # }
+#   # instance_requirements {
+#   #   vcpu_count {
+#   #     min = 1
+#   #     max = 1
+#   #   }
+#   #   memory_mib {
+#   #     min = 512
+#   #     max = 1024
+#   #   }
+#   # }
 
-  # iam_instance_profile {
-  #   name = aws_iam_instance_profile.bastion.name
-  # }
+#   # iam_instance_profile {
+#   #   name = aws_iam_instance_profile.bastion.name
+#   # }
 
-  network_interfaces {
-    associate_public_ip_address = true
-    security_groups             = var.instance_security_group_ids
+#   network_interfaces {
+#     associate_public_ip_address = true
+#     security_groups             = var.instance_security_group_ids
+#   }
+
+#   metadata_options {
+#     http_tokens = "required"
+#   }
+# }
+
+resource "aws_launch_configuration" "bastion_instance" {
+  name_prefix                 = var.namespace
+  key_name                    = var.namespace
+  image_id                    = var.ami_id
+  instance_type               = var.instance_type
+  security_groups             = var.instance_security_group_ids
+  associate_public_ip_address = true
+
+  lifecycle {
+    create_before_destroy = true
   }
 
   metadata_options {
     http_tokens = "required"
   }
+
+  root_block_device {
+    encrypted = true
+  }
 }
+
 
 resource "aws_autoscaling_group" "bastion_instance" {
   name                = "${var.namespace}-bastion"
