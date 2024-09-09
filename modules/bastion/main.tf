@@ -5,6 +5,14 @@ resource "aws_launch_template" "bastion_instance" {
   instance_type = var.instance_type
   # key_name      = "${var.namespace}-bastion"
 
+  block_device_mappings {
+    device_name = "/dev/sda1"
+
+    ebs {
+      volume_size = 20
+    }
+  }
+
   network_interfaces {
     associate_public_ip_address = true
     security_groups             = var.instance_security_group_ids
