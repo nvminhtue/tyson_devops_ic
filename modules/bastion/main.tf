@@ -3,14 +3,13 @@ resource "aws_launch_template" "bastion_instance" {
   # image_id      = data.aws_ami.this.id
   image_id      = "ami-01811d4912b4ccb26"
   instance_type = var.instance_type
-  key_name      = "${var.namespace}-bastion"
+  # key_name      = "${var.namespace}-bastion"
 
   block_device_mappings {
     device_name = "/dev/sda1"
 
     ebs {
       volume_size           = 20
-      volume_type           = "gp2"
     }
   }
 
