@@ -64,5 +64,5 @@ variable "bastion_min_instance_count" {
 
 variable "bastion_ami_id" {
   description = "The AMI ID for the instance"
-  default     = "ami-058b428b3b45defec"
+  default     = "ami-01811d4912b4ccb26"
 }
