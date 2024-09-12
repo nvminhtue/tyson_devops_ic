@@ -1,9 +1,8 @@
 resource "aws_launch_template" "bastion_instance" {
   name_prefix = "${var.namespace}-bastion-"
-  # image_id      = data.aws_ami.this.id
-  image_id      = "ami-01811d4912b4ccb26"
+  image_id      = data.aws_ami.this.id
   instance_type = var.instance_type
-  # key_name      = "${var.namespace}-bastion"
+  key_name      = "${var.namespace}-bastion"
 
   block_device_mappings {
     device_name = "/dev/sda1"
