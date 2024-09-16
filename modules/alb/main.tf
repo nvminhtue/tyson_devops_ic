@@ -9,7 +9,7 @@ resource "aws_lb" "this" {
 
 
   access_logs {
-    bucket  = "${var.namespace}-alb-logs"
+    bucket  = "${var.namespace}-bucket"
     enabled = true
   }
 }
@@ -26,10 +26,10 @@ resource "aws_lb_target_group" "this" {
     interval            = 5
     protocol            = "HTTP"
     matcher             = "200-299"
-    timeout             = 3
+    timeout             = 5
     path                = var.health_check_path
     port                = var.app_port
-    unhealthy_threshold = 2
+    unhealthy_threshold = 5
   }
 }
 

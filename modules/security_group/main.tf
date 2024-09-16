@@ -38,6 +38,16 @@ resource "aws_security_group_rule" "alb_ingress_http" {
   description       = "From HTTP to ALB"
 }
 
+resource "aws_security_group_rule" "alb_egress" {
+  type              = "egress"
+  security_group_id = aws_security_group.alb.id
+  protocol          = "tcp"
+  from_port         = var.app_port
+  to_port           = var.app_port
+  cidr_blocks       = ["0.0.0.0/0"]
+  description       = "From ALB to ECS Fargate"
+}
+
 resource "aws_security_group" "ecs_fargate" {
   name        = "${var.namespace}-ecs-fargate-sg"
   description = "ECS Fargate security group"
@@ -99,6 +109,16 @@ resource "aws_security_group_rule" "elasticache_ingress_fargate" {
   from_port                = 6379
   to_port                  = 6379
   source_security_group_id = aws_security_group.ecs_fargate.id
+}
+
+resource "aws_security_group_rule" "rds_ingress_app_fargate" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.rds.id
+  from_port                = 5432
+  to_port                  = 5432
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.ecs_fargate.id
+  description              = "From app to DB"
 }
 
 resource "aws_security_group_rule" "bastion_ingress_ssh" {
