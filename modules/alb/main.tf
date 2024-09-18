@@ -23,7 +23,7 @@ resource "aws_lb_target_group" "this" {
 
   health_check {
     healthy_threshold   = 3
-    interval            = 5
+    interval            = 10
     protocol            = "HTTP"
     matcher             = "200-299"
     timeout             = 5
