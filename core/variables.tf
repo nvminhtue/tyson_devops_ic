@@ -26,6 +26,36 @@ variable "secret_key_base" {
   sensitive   = true
 }
 
+variable "database_host" {
+  description = "RDS database host"
+  type        = string
+  sensitive   = true
+}
+
+variable "database_port" {
+  description = "RDS database port"
+  type        = string
+  sensitive   = true
+}
+
+variable "database_name" {
+  description = "RDS database name"
+  type        = string
+  sensitive   = true
+}
+
+variable "database_username" {
+  description = "RDS database username"
+  type        = string
+  sensitive   = true
+}
+
+variable "database_password" {
+  description = "RDS database password"
+  type        = string
+  sensitive   = true
+}
+
 variable "rds_database_name" {
   description = "RDS database name"
   type        = string
