@@ -15,6 +15,8 @@ module "ssm" {
     database_name     = var.database_name
     database_username = var.database_username
     database_password = var.database_password
+    redis_host        = var.redis_host
+    redis_port        = var.redis_port
   }
 }
 

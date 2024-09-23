@@ -96,3 +96,15 @@ variable "bastion_ami_id" {
   description = "The AMI ID for the instance"
   default     = "ami-01811d4912b4ccb26"
 }
+
+variable "redis_host" {
+  description = "Redis host"
+  type        = string
+  sensitive   = true
+}
+
+variable "redis_port" {
+  description = "Redis port"
+  type        = string
+  sensitive   = true
+}
