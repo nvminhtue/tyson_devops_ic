@@ -150,3 +150,23 @@ resource "aws_security_group_rule" "rds_ingress_bastion" {
   protocol                 = "tcp"
   source_security_group_id = aws_security_group.bastion.id
 }
+
+resource "aws_security_group_rule" "elasticache_ingress_bastion" {
+  type                     = "ingress"
+  security_group_id        = aws_security_group.elasticache.id
+  from_port                = 6379
+  to_port                  = 6379
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.bastion.id
+  description              = "Bastion to Elasticache"
+}
+
+resource "aws_security_group_rule" "bastion_egress_elasticache" {
+  type                     = "egress"
+  security_group_id        = aws_security_group.bastion.id
+  from_port                = 6379
+  to_port                  = 6379
+  protocol                 = "tcp"
+  source_security_group_id = aws_security_group.elasticache.id
+  description              = "Bastion egress Elasticache"
+}
