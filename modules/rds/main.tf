@@ -1,3 +1,12 @@
+# resource "aws_db_subnet_group" "this" {
+#   name       = "${var.namespace}-aurora-db-subnet-group"
+#   subnet_ids = var.subnets
+
+#   tags = {
+#     Name = "${var.namespace}-aurora-db-subnet-group"
+#   }
+# }
+
 module "rds" {
   source  = "terraform-aws-modules/rds-aurora/aws"
   version = "9.9.0"
@@ -11,6 +20,7 @@ module "rds" {
   subnets                = var.subnets
   vpc_security_group_ids = var.vpc_security_group_ids
 
+  create_db_subnet_group = true
   db_subnet_group_name = "${var.namespace}-aurora-db-subnet-group"
 
   instance_class = local.instance_class
