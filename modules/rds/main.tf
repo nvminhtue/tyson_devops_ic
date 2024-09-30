@@ -29,6 +29,8 @@ module "rds" {
 
   publicly_accessible = false
 
+  manage_master_user_password = true
+
   database_name       = var.database_name
   master_username     = var.username
   master_password     = var.password
