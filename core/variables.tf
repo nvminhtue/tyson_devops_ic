@@ -86,15 +86,3 @@ variable "bastion_min_instance_count" {
   description = "The minimum number of the instance"
   default     = 1
 }
-
-variable "redis_host" {
-  description = "Redis host"
-  type        = string
-  sensitive   = true
-}
-
-variable "redis_port" {
-  description = "Redis port"
-  type        = string
-  sensitive   = true
-}
