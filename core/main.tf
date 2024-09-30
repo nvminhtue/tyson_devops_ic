@@ -131,6 +131,4 @@ module "bastion" {
   min_instance_count     = var.bastion_min_instance_count
   max_instance_count     = var.bastion_max_instance_count
   instance_desired_count = var.bastion_instance_desired_count
-
-  ami_id = var.bastion_ami_id
 }

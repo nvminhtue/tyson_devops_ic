@@ -92,11 +92,6 @@ variable "bastion_min_instance_count" {
   default     = 1
 }
 
-variable "bastion_ami_id" {
-  description = "The AMI ID for the instance"
-  default     = "ami-01811d4912b4ccb26"
-}
-
 variable "redis_host" {
   description = "Redis host"
   type        = string
