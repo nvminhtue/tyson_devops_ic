@@ -8,6 +8,8 @@ locals {
 
   bastion_instance_type = "t3.nano"
 
+  redis_port = 6379
+
   ecs_config = {
     staging = jsondecode(file("assets/ecs_config/staging.json"))
     prod    = jsondecode(file("assets/ecs_config/prod.json"))
