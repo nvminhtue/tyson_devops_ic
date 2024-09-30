@@ -126,7 +126,7 @@ module "bastion" {
   instance_security_group_ids = module.security_group.bastion_security_groups_ids
 
   namespace     = local.namespace
-  instance_type = var.bastion_instance_type
+  instance_type = local.bastion_instance_type
 
   min_instance_count     = var.bastion_min_instance_count
   max_instance_count     = var.bastion_max_instance_count

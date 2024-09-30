@@ -72,11 +72,6 @@ variable "rds_password" {
   sensitive   = true
 }
 
-variable "bastion_instance_type" {
-  description = "The bastion instance type"
-  default     = "t3.nano"
-}
-
 variable "bastion_instance_desired_count" {
   description = "The desired number of the bastion instance"
   default     = 1

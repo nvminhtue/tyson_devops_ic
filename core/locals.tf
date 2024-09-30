@@ -6,6 +6,8 @@ locals {
   app_port          = 4000
   health_check_path = "/"
 
+  bastion_instance_type = "t3.nano"
+
   ecs_config = {
     staging = jsondecode(file("assets/ecs_config/staging.json"))
     prod    = jsondecode(file("assets/ecs_config/prod.json"))
