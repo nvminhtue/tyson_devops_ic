@@ -17,3 +17,8 @@ output "private_subnets_cidr_blocks" {
   description = "Private subnets CIDR blocks"
   value       = module.vpc.private_subnets_cidr_blocks
 }
+
+output "database_subnets" {
+  description = "Database subnets"
+  value       = data.aws_subnets.private_subnets.ids
+}

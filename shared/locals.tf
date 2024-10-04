@@ -1,7 +1,7 @@
 locals {
   region = "ap-southeast-1"
 
-  app_name = "devops_ic"
+  app_name = "devops-ic"
 
   iam_admin_emails = ["nvminhtue@gmail.com"]
 

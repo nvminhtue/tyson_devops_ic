@@ -3,9 +3,19 @@ resource "aws_s3_bucket" "this" {
   force_destroy = true
 }
 
+resource "aws_s3_bucket_ownership_controls" "this" {
+  bucket = aws_s3_bucket.this.id
+
+  rule {
+    object_ownership = "ObjectWriter"
+  }
+}
+
 resource "aws_s3_bucket_acl" "this" {
   bucket = aws_s3_bucket.this.id
   acl    = "private"
+
+  depends_on = [aws_s3_bucket_ownership_controls.this]
 }
 
 resource "aws_s3_bucket_public_access_block" "this" {
@@ -18,7 +28,7 @@ resource "aws_s3_bucket_public_access_block" "this" {
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "this" {
-  bucket = aws_s3_bucket.this.bucket
+  bucket = aws_s3_bucket.this.id
   rule {
     id = "expired_objects"
 
