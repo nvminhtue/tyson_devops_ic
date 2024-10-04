@@ -123,3 +123,8 @@ variable "secrets_variables" {
     valueFrom = string
   }))
 }
+
+variable "health_check_grace_period_seconds" {
+  description = "Seconds to ignore failing load balancer health checks on newly instantiated tasks to prevent premature shutdown"
+  type        = number
+}
